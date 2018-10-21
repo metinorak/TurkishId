@@ -16,14 +16,14 @@ TurkishIdNumber::TurkishIdNumber(std::string number)
 
 
 bool TurkishIdNumber::isValid(std::string str){
-    if(str.length() != this->length){
+    if(str.length() != length){
         return false;
     }
     if(str[0] == '0'){
         return false;
     }
 
-    if(!this->isNumber(str)){
+    if(!isNumber(str)){
         return false;
     }
 
@@ -32,18 +32,18 @@ bool TurkishIdNumber::isValid(std::string str){
 
 
     for(int i = 0; i < 4; i++){
-        first_sum += this->getDigit(str, i * 2);
-        second_sum += this->getDigit(str, i * 2 + 1);
+        first_sum += getDigit(str, i * 2);
+        second_sum += getDigit(str, i * 2 + 1);
     }
-    first_sum += this->getDigit(str, 8);
+    first_sum += getDigit(str, 8);
 
-    if((7 * first_sum - second_sum) % 10 != this->getDigit(str, 9)){
+    if((7 * first_sum - second_sum) % 10 != getDigit(str, 9)){
         return false;
     }
 
-    int first_ten_sum = first_sum + second_sum + this->getDigit(str, 9);
+    int first_ten_sum = first_sum + second_sum + getDigit(str, 9);
 
-    if(first_ten_sum % 10 != this->getDigit(str, 10)){
+    if(first_ten_sum % 10 != getDigit(str, 10)){
         return false;
     }
 

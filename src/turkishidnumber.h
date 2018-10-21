@@ -9,11 +9,11 @@ class TurkishIdNumber
 private:
     const static unsigned int length = 11;
     std::string value;
-    bool isNumber(std::string str);
-    int getDigit(std::string str, int index);
+    static bool isNumber(std::string str);
+    static int getDigit(std::string str, int index);
 public:
-    bool isValid(std::string str);
     TurkishIdNumber(std::string value);
+    static bool isValid(std::string str);
     std::string getValue();
     void setValue(std::string value);
 };
