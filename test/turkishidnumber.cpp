@@ -6,11 +6,13 @@
 
 TurkishIdNumber::TurkishIdNumber(std::string number)
 {
-    this->value = number;
+
 
     if(!this->isValid(number)){
         throw std::invalid_argument("Invalid Turkish ID Number");
     }
+
+    this->value = number;
 
 }
 
@@ -71,7 +73,7 @@ std::string TurkishIdNumber::getValue(){
 }
 
 
-void TurkishIdNumber::setValue(std::string value){
+void TurkishIdNumber::changeValue(std::string value){
     if(!this->isValid(value)){
         throw std::invalid_argument("Invalid Turkish ID Number");
     }

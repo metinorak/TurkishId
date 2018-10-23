@@ -16,7 +16,7 @@ int main()
 
 
     try{
-        tid->setValue("10000000148");
+        tid->changeValue("10000000148");
 
     }
     catch(invalid_argument& ia){
