@@ -39,17 +39,19 @@ bool TurkishIdNumber::isValid(std::string str){
     }
     first_sum += getDigit(str, 8);
 
-    if((7 * first_sum - second_sum) % 10 != getDigit(str, 9)){
+    int n = 7 * first_sum - second_sum;
+    
+    if(n < 0){
+        n += 10;
+    }
+
+    if(n % 10 != getDigit(value, 9)){
         return false;
     }
 
-    int first_ten_sum = first_sum + second_sum + getDigit(str, 9);
+    int first_ten_sum = first_sum + second_sum + getDigit(value, 9);
 
-    if(first_ten_sum % 10 != getDigit(str, 10)){
-        return false;
-    }
-
-    return true;
+    return first_ten_sum % 10 == getDigit(value, 10);
 }
 
 
