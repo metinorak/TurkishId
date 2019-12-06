@@ -6,14 +6,11 @@
 
 TurkishIdNumber::TurkishIdNumber(std::string number)
 {
-
-
     if(!this->isValid(number)){
         throw std::invalid_argument("Invalid Turkish ID Number");
     }
 
     this->value = number;
-
 }
 
 
@@ -54,12 +51,9 @@ bool TurkishIdNumber::isValid(std::string str){
     return first_ten_sum % 10 == getDigit(value, 10);
 }
 
-
-
 int TurkishIdNumber::getDigit(std::string str, int index){
     return str[index] - '0';
 }
-
 
 bool TurkishIdNumber::isNumber(std::string str){
     for(unsigned int i = 0; i < str.length(); i++){
@@ -74,7 +68,6 @@ std::string TurkishIdNumber::getValue(){
     return this->value;
 }
 
-
 void TurkishIdNumber::changeValue(std::string value){
     if(!this->isValid(value)){
         throw std::invalid_argument("Invalid Turkish ID Number");
@@ -83,4 +76,3 @@ void TurkishIdNumber::changeValue(std::string value){
         this->value = value;
     }
 }
-
