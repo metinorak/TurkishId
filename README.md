@@ -23,7 +23,7 @@ Generating an object using this class, you can keep the Turkish id numbers as ob
 
 ```
     try{
-        tid->changeValue("10000000148");
+        tid->setValue("10000000148");
 
     }
     catch(invalid_argument& ia){
@@ -31,8 +31,7 @@ Generating an object using this class, you can keep the Turkish id numbers as ob
     }
 ```
 
-* And get the value using `getValue method.`
-
+* And get the value using `toString method.`
 
 * You don't have to create an object. If you just want to validate the value, use static isValid method. 
 
@@ -41,4 +40,3 @@ if(TurkishIdNumber::isValid("10000000146"){
     cout<<"The value is valid."<<endl;
 }
 ```
-
