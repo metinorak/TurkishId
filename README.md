@@ -7,35 +7,35 @@ Generating an object using this class, you can keep the Turkish id numbers as ob
 * You must add `turkishidnumber.h` header file
 
 ## Examples
-```
-    TurkishIdNumber *tid = NULL;
-    try{
-        tid = new TurkishIdNumber("10000000146");
+```c++
+TurkishIdNumber *tid = NULL;
+try{
+    tid = new TurkishIdNumber("10000000146");
 
-    }
-    catch(invalid_argument& ia){
-        cerr<< "Invalid argument: " << ia.what()<<endl;
-    }
+}
+catch(invalid_argument& ia){
+    cerr<< "Invalid argument: " << ia.what()<<endl;
+}
 
 ```
 
 * You can also change the value later:
 
-```
-    try{
-        tid->setValue("10000000148");
+```c++
+try{
+    tid->setValue("10000000148");
 
-    }
-    catch(invalid_argument& ia){
-        cerr<< "Invalid argument: " << ia.what()<<endl;
-    }
+}
+catch(invalid_argument& ia){
+    cerr<< "Invalid argument: " << ia.what()<<endl;
+}
 ```
 
-* And get the value using `toString method.`
+* And get the value using `toString` method.
 
 * You don't have to create an object. If you just want to validate the value, use static isValid method. 
 
-```
+```c++
 if(TurkishIdNumber::isValid("10000000146"){
     cout<<"The value is valid."<<endl;
 }
