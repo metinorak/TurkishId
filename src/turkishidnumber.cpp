@@ -3,72 +3,65 @@
 #include <stdlib.h>
 #include <stdexcept>
 
-
-TurkishIdNumber::TurkishIdNumber(std::string number)
+TurkishIdNumber::TurkishIdNumber(std::string value)
 {
-    if(!this->isValid(number)){
-        throw std::invalid_argument("Invalid Turkish ID Number");
-    }
-
-    this->value = number;
+    this->setValue(value);
 }
 
-
-bool TurkishIdNumber::isValid(std::string str){
-    if(str.length() != length){
+bool TurkishIdNumber::isValid(std::string value){
+    if(value.length() != length){
         return false;
     }
-    if(str[0] == '0'){
-        return false;
-    }
-
-    if(!isNumber(str)){
+    if(value[0] == '0'){
         return false;
     }
 
-    int first_sum = 0;
-    int second_sum = 0;
+    if(!isNumeric(value)){
+        return false;
+    }
 
+    int firstSum = 0;
+    int secondSum = 0;
 
     for(int i = 0; i < 4; i++){
-        first_sum += getDigit(str, i * 2);
-        second_sum += getDigit(str, i * 2 + 1);
+        firstSum += getDigit(value, i * 2);
+        secondSum += getDigit(value, i * 2 + 1);
     }
-    first_sum += getDigit(str, 8);
+    firstSum += getDigit(value, 8);
 
-    int n = 7 * first_sum - second_sum;
+    int checkSum = (7 * firstSum - secondSum) % 10;
     
-    if(n < 0){
-        n += 10;
+    if(checkSum < 0){
+        checkSum += 10;
     }
 
-    if(n % 10 != getDigit(value, 9)){
+    if(checkSum != getDigit(value, 9)){
         return false;
     }
 
-    int first_ten_sum = first_sum + second_sum + getDigit(value, 9);
+    int firstTenSum = firstSum + secondSum + getDigit(value, 9);
 
-    return first_ten_sum % 10 == getDigit(value, 10);
+    return firstTenSum % 10 == getDigit(value, 10);
 }
 
-int TurkishIdNumber::getDigit(std::string str, int index){
-    return str[index] - '0';
+int TurkishIdNumber::getDigit(std::string value, int index){
+    return value[index] - '0';
 }
 
-bool TurkishIdNumber::isNumber(std::string str){
-    for(unsigned int i = 0; i < str.length(); i++){
-        if(!std::isdigit(str[i])){
+bool TurkishIdNumber::isNumeric(std::string value){
+    for(unsigned int i = 0; i < value.length(); i++){
+        if(!std::isdigit(value[i])){
             return false;
         }
     }
     return true;
 }
 
-std::string TurkishIdNumber::getValue(){
+std::string TurkishIdNumber::toString(){
     return this->value;
 }
 
-void TurkishIdNumber::changeValue(std::string value){
+void TurkishIdNumber::setValue(std::string value){
     if(!this->isValid(value)){
         throw std::invalid_argument("Invalid Turkish ID Number");
     }
